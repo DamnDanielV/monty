@@ -1,7 +1,19 @@
-#ifndef _MONTY_
-#define _MONTY_
+#ifndef _MONTY_H_
+#define _MONTY_H_
 
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <limits.h>
+#include <string.h>
+#include <ctype.h>
+
+#define EXIT_FAIL 1
+#define EXIT_SUCCE 0
+
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -33,5 +45,12 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-
+stack_t *head;
+void open_monty(char *file_to_open);
+void command_checker(char *tok, char *tokens, unsigned int line_n);
+stack_t *stack_creator(int n);
+void f_pall(stack_t **head, unsigned int line_n);
+void f_push(stack_t **stack, unsigned int line_n);
+void c_w_args(char *tok, char *tokens, unsigned int line_n);
+int c_n_args(char *tok, unsigned int line_n);
 #endif
