@@ -10,7 +10,16 @@ void open_monty(char *file_to_open)
 	unsigned int line_n = 0;
 	char *buffer = NULL, *del = " \n\t", *tok = NULL, *tokens = NULL;
 	size_t n;
+	struct stat *st = NULL;
 
+	st = malloc(sizeof(struct stat));
+	if (stat(file_to_open, st) != 0)
+	{
+		printf("Error: Cant open file %s\n", file_to_open);
+		free(st);
+		exit(EXIT_FAIL);
+	}
+	free(st);
 	fd = fopen(file_to_open, "r");
 	if (fd == NULL)
 	{
@@ -49,7 +58,7 @@ void command_checker(char *tok, char *tokens, unsigned int line_n)
 }
 
 /**
- * c_n_args - checks for the command pall
+ * c_n_args - checks for the commands without arguments
  * @tok: first command
  * @line_n: number of line error
  * Return: 1 if fails
@@ -60,6 +69,9 @@ int c_n_args(char *tok, unsigned int line_n)
 
 	instruction_t f_n_args[] = {
 			{"pall", f_pall},
+			{"pint", f_pint},
+			{"pop", f_pop},
+			{"swap", f_swap},
 			{NULL, NULL}
 	};
 	while (f_n_args[i].opcode)
@@ -98,7 +110,7 @@ void c_w_args(char *tok, char *tokens, unsigned int line_n)
 			}
 			else
 			{
-				printf("Error: Second arg not int\n");
+				printf("L%d: usage: push integer\n", line_n);
 				exit(EXIT_FAIL);
 			}
 		}
