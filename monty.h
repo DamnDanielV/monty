@@ -51,6 +51,7 @@ void command_checker(char *tok, char *tokens, unsigned int line_n);
 stack_t *stack_creator(int n);
 void f_pall(stack_t **head, unsigned int line_n);
 void f_push(stack_t **stack, unsigned int line_n);
+void f_pint(stack_t **head, unsigned int line_n);
 void c_w_args(char *tok, char *tokens, unsigned int line_n);
 int c_n_args(char *tok, unsigned int line_n);
 #endif

@@ -52,3 +52,18 @@ void f_push(stack_t **stack, unsigned int line_n)
 		(*stack)->next->prev = (*stack);
 	head = (*stack);
 }
+/**
+ * f_pint - pushes an element to the stack
+ * @head: pointer to the head of the stack
+ * @line_n: Number line where the code fails.
+ * Return: void nothing
+ */
+void f_pint(stack_t **head, unsigned int line_n)
+{
+	if (!(*head) || !head)
+	{
+		printf("L%d: can't pint, stack empty\n", line_n);
+		exit(EXIT_FAIL);
+	}
+	printf("%d\n", (*head)->n);
+}
