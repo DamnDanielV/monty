@@ -7,7 +7,7 @@
 void open_monty(char *file_to_open)
 {
 	FILE *fd;
-	unsigned int line_n = 0;
+	unsigned int line_n = 1;
 	char *buffer = NULL, *del = " \n\t", *tok = NULL, *tokens = NULL;
 	size_t n;
 	struct stat *st = NULL;
@@ -23,38 +23,42 @@ void open_monty(char *file_to_open)
 	fd = fopen(file_to_open, "r");
 	if (fd == NULL)
 	{
+		fclose(fd);
 		printf("Error: Can't open file %s\n", file_to_open);
 		exit(EXIT_FAIL);
 	}
 	while (getline(&buffer, &n, fd) != -1)
 	{
 		tok = strtok(buffer, del);
-		if (tok == NULL)
+		if (tok == NULL || tok[0] == '#')
 		{
-			fclose(fd);
-			free(buffer);
-			printf("Error\n");
-			exit(EXIT_FAIL);
+			continue;
 		}
 		tokens = strtok(NULL, del);
 		line_n++;
-		command_checker(tok, tokens, line_n);
+		command_checker(tok, tokens, line_n, fd, buffer);
 	}
+	free(buffer);
+	fclose(fd);
+	free_f();
 }
 /**
  * command_checker - checks the commands
  * @tok: first command
  * @tokens: second command
  * @line_n: number of line error
+ * @fd: pointer to a monty file
+ * @buffer: pointer to string of monty commands
  * Return: void nothing
  */
-void command_checker(char *tok, char *tokens, unsigned int line_n)
+void command_checker(char *tok, char *tokens,
+unsigned int line_n, FILE *fd, char *buffer)
 {
 	int check;
 
 	check = c_n_args(tok, line_n);
 	if (check == 1)
-		c_w_args(tok, tokens, line_n);
+		c_w_args(tok, tokens, line_n, fd, buffer);
 }
 
 /**
@@ -65,7 +69,7 @@ void command_checker(char *tok, char *tokens, unsigned int line_n)
  */
 int c_n_args(char *tok, unsigned int line_n)
 {
-	int i;
+	int i = 0;
 
 	instruction_t f_n_args[] = {
 			{"pall", f_pall},
@@ -83,7 +87,10 @@ int c_n_args(char *tok, unsigned int line_n)
 	while (f_n_args[i].opcode)
 	{
 		if (strcmp(tok, f_n_args[i].opcode) == 0)
+		{
 			f_n_args[i].f(&head, line_n);
+			return (0);
+		}
 		i++;
 	}
 	return (EXIT_FAIL);
@@ -93,9 +100,12 @@ int c_n_args(char *tok, unsigned int line_n)
  * @tok: first command
  * @tokens: second command (number to be pushed)
  * @line_n: number of line error
+ * @fd: pointer to a monty file
+ * @buffer: pointer to string of monty commands
  * Return: void nothing
  */
-void c_w_args(char *tok, char *tokens, unsigned int line_n)
+void c_w_args(char *tok, char *tokens,
+unsigned int line_n, FILE *fd, char *buffer)
 {
 	int i = 0, n = 0;
 	stack_t *stack = NULL;
@@ -117,8 +127,19 @@ void c_w_args(char *tok, char *tokens, unsigned int line_n)
 			else
 			{
 				printf("L%d: usage: push integer\n", line_n);
+				free(buffer);
+				fclose(fd);
+				free_f();
 				exit(EXIT_FAIL);
 			}
+		}
+		else
+		{
+			printf("L%d: unknown instruction %s\n", line_n, tok);
+			free_f();
+			free(buffer);
+			fclose(fd);
+			exit(EXIT_FAIL);
 		}
 		i++;
 	}
