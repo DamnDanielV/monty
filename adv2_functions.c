@@ -40,8 +40,7 @@ void f_pstr(stack_t **head, unsigned int line_n)
 	{
 		while (*head && (*head)->n != 0)
 		{
-			if (((*head)->n >= 65 && (*head)->n <= 90)
-			|| ((*head)->n >= 97 && (*head)->n <= 122))
+			if (((*head)->n >= 1 && (*head)->n <= 127))
 			{
 				printf("%c", (*head)->n);
 				(*head) = (*head)->next;
