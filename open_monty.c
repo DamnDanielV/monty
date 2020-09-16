@@ -15,7 +15,7 @@ void open_monty(char *file_to_open)
 	st = malloc(sizeof(struct stat));
 	if (stat(file_to_open, st) != 0)
 	{
-		printf("Error: Cant open file %s\n", file_to_open);
+		printf("Error: Can't open file %s\n", file_to_open);
 		free(st);
 		exit(EXIT_FAIL);
 	}
@@ -72,6 +72,7 @@ int c_n_args(char *tok, unsigned int line_n)
 			{"pint", f_pint},
 			{"pop", f_pop},
 			{"swap", f_swap},
+			{"add", f_add},
 			{NULL, NULL}
 	};
 	while (f_n_args[i].opcode)
