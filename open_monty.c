@@ -107,7 +107,7 @@ int c_n_args(char *tok, unsigned int line_n)
 void c_w_args(char *tok, char *tokens,
 unsigned int line_n, FILE *fd, char *buffer)
 {
-	int i = 0, n = 0;
+	int i = 0, n_arg;
 	stack_t *stack = NULL;
 
 	instruction_t f_w_args[] = {
@@ -118,10 +118,10 @@ unsigned int line_n, FILE *fd, char *buffer)
 	{
 		if (strcmp(tok, f_w_args[i].opcode) == 0)
 		{
-			if (tokens != NULL && isdigit(*tokens) != 0)
+			n_arg = check_is_num(tokens);
+			if (n_arg != -1)
 			{
-				n = atoi(tokens);
-				stack = stack_creator(n);
+				stack = stack_creator(n_arg, fd, buffer);
 				f_w_args[i].f(&stack, line_n);
 			}
 			else

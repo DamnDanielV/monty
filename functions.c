@@ -4,12 +4,15 @@
  * @n: data to be inserted in the stack
  * Return: pointer to the stack
  */
-stack_t *stack_creator(int n)
+stack_t *stack_creator(int n, FILE *fd, char *buffer)
 {
 	stack_t *stack = malloc(sizeof(stack_t));
 
 	if (stack == NULL)
 	{
+		fclose(fd);
+		free(buffer);
+		free_f();
 		printf("Error: Fail allocating memory\n");
 		exit(EXIT_FAIL);
 	}

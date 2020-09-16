@@ -49,7 +49,7 @@ stack_t *head;
 void open_monty(char *file_to_open);
 void command_checker(char *tok, char *tokens,
 unsigned int line_n, FILE *fd, char *buffer);
-stack_t *stack_creator(int n);
+stack_t *stack_creator(int n, FILE *fd, char *buffer);
 void f_pall(stack_t **head, unsigned int line_n);
 void f_push(stack_t **stack, unsigned int line_n);
 void f_pint(stack_t **head, unsigned int line_n);
@@ -64,5 +64,6 @@ void f_mod(stack_t **head, unsigned int line_n);
 void c_w_args(char *tok, char *tokens,
 unsigned int line_n, FILE *fd, char *buffer);
 int c_n_args(char *tok, unsigned int line_n);
+int check_is_num(char *tokens);
 void free_f(void);
 #endif
