@@ -61,6 +61,7 @@ void f_sub(stack_t **head, unsigned int line_n);
 void f_mul(stack_t **head, unsigned int line_n);
 void f_div(stack_t **head, unsigned int line_n);
 void f_mod(stack_t **head, unsigned int line_n);
+void f_pchar(stack_t **head, unsigned int line_n);
 void c_w_args(char *tok, char *tokens,
 unsigned int line_n, FILE *fd, char *buffer);
 int c_n_args(char *tok, unsigned int line_n);
