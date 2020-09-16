@@ -4,19 +4,29 @@
 * @tokens: Argument to check for ints
 * Return: argument or -1 if fails
 */
-int check_is_num(char *tokens)
+stack_t *check_is_num(char *tokens, FILE *fd, char *buffer)
 {
-	int num = 0, i = 0;
+	stack_t *sta = NULL;
+	int num = 0, i = 0, neg = 0;
 
-	if (tokens && isdigit(*tokens))
+	if (tokens && tokens[0] == '-')
+	{
+		neg = -1;
+		tokens++;
+	}
+	if (isdigit(*tokens) && tokens)
 	{
 		while (tokens[i] != '\0')
 		{
 			if (isdigit(tokens[i] == 0))
-				return (-1);
+				return (NULL);
+			i++;
 		}
 		num = atoi(tokens);
-		return (num);
+		if (neg != 0)
+			num = num * -1;
+		sta = stack_creator(num, fd, buffer);
+		return (sta);
 	}
-	return (-1);
+	return (NULL);
 }
