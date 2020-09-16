@@ -33,6 +33,7 @@ void open_monty(char *file_to_open)
 		if (tok == NULL || tok[0] == '#')
 		{
 			continue;
+			exit(EXIT_FAIL);
 		}
 		tokens = strtok(NULL, del);
 		line_n++;
