@@ -56,7 +56,7 @@ void f_mul(stack_t **head, unsigned int line_n)
 	(*head)->n = mul;
 }
 /**
- * f_div - multiplies the twice top elements.
+ * f_div - divides the twice top elements.
  * @head: pointer to the head of the stack
  * @line_n: Number line where the code fails.
  * Return: void nothing
@@ -87,4 +87,37 @@ void f_div(stack_t **head, unsigned int line_n)
 	free((*head)->prev);
 	(*head)->prev = NULL;
 	(*head)->n = rdiv;
+}
+/**
+ * f_mod - module of the twice top elements.
+ * @head: pointer to the head of the stack
+ * @line_n: Number line where the code fails.
+ * Return: void nothing
+ */
+void f_mod(stack_t **head, unsigned int line_n)
+{
+	stack_t *temp;
+	int c = 0, rmod = 0;
+
+	temp = *head;
+	while (temp)
+	{
+		c++;
+		temp = temp->next;
+	}
+	if ((*head)->n == 0)
+	{
+		printf("L%d: division by zero\n", line_n);
+		exit(EXIT_FAIL);
+	}
+	if (c < 2)
+	{
+		printf("L%d: can't mod, stack too short\n", line_n);
+		exit(EXIT_FAIL);
+	}
+	rmod = (*head)->next->n % (*head)->n;
+	(*head) = (*head)->next;
+	free((*head)->prev);
+	(*head)->prev = NULL;
+	(*head)->n = rmod;
 }
