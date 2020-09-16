@@ -77,7 +77,7 @@ void f_div(stack_t **head, unsigned int line_n)
 		fprintf(stderr, "L%d: division by zero\n", line_n);
 		exit(EXIT_FAIL);
 	}
-	if (c < 1)
+	if (!head || !(*head) || c < 2)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_n);
 		exit(EXIT_FAIL);
