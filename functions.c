@@ -2,6 +2,8 @@
 /**
  * stack_creator - creates a stack with the data n
  * @n: data to be inserted in the stack
+ * @fd: pointer to a monty file
+ * @buffer: pointer to string of monty commands
  * Return: pointer to the stack
  */
 stack_t *stack_creator(int n, FILE *fd, char *buffer)
@@ -13,7 +15,7 @@ stack_t *stack_creator(int n, FILE *fd, char *buffer)
 		fclose(fd);
 		free(buffer);
 		free_f();
-		dprintf(STDOUT_FILENO, "Error: Fail allocating memory\n");
+		fprintf(stderr, "Error: Fail allocating memory\n");
 		exit(EXIT_FAIL);
 	}
 	stack->n = n;
@@ -65,7 +67,7 @@ void f_pint(stack_t **head, unsigned int line_n)
 {
 	if (!(*head) || !head)
 	{
-		dprintf(STDOUT_FILENO, "L%d: can't pint, stack empty\n", line_n);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_n);
 		exit(EXIT_FAIL);
 	}
 	printf("%d\n", (*head)->n);
@@ -80,7 +82,7 @@ void f_pop(stack_t **head, unsigned int line_n)
 {
 	if (!(*head) || !head)
 	{
-		dprintf(STDOUT_FILENO, "L%d: can't pop an empty stack\n", line_n);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_n);
 		exit(EXIT_FAIL);
 	}
 	if ((*head)->next == NULL)
