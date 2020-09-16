@@ -23,8 +23,8 @@ void f_swap(stack_t **head, unsigned int line_n)
 		exit(EXIT_FAIL);
 	}
 
-	(*head)->next = (*head)->next->next;
-	(*head) = (*head)->next->prev;
+	(*head)->prev->prev = (*head);
+	(*head)->prev->next = (*head)->next;
 	(*head)->next = (*head)->prev;
 	(*head)->prev = NULL;
 	(*head)->next->prev = (*head);

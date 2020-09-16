@@ -83,6 +83,7 @@ int c_n_args(char *tok, unsigned int line_n)
 			{"div", f_div},
 			{"mul", f_mul},
 			{"mod", f_mod},
+			{"pchar", f_pchar},
 			{NULL, NULL}
 	};
 	while (f_n_args[i].opcode)
