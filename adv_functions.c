@@ -75,11 +75,13 @@ void f_div(stack_t **head, unsigned int line_n)
 	if ((*head)->n == 0)
 	{
 		fprintf(stderr, "L%d: division by zero\n", line_n);
+		free_f();
 		exit(EXIT_FAIL);
 	}
 	if (!head || !(*head) || c < 2)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_n);
+		free_f();
 		exit(EXIT_FAIL);
 	}
 	rdiv = (*head)->next->n / (*head)->n;
