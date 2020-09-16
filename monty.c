@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		printf("USAGE: monty file\n");
+		dprintf(STDOUT_FILENO, "USAGE: monty file\n");
 		return (EXIT_FAIL);
 	}
 	open_monty(argv[1]);

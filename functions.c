@@ -13,7 +13,7 @@ stack_t *stack_creator(int n, FILE *fd, char *buffer)
 		fclose(fd);
 		free(buffer);
 		free_f();
-		printf("Error: Fail allocating memory\n");
+		dprintf(STDOUT_FILENO, "Error: Fail allocating memory\n");
 		exit(EXIT_FAIL);
 	}
 	stack->n = n;
@@ -65,7 +65,7 @@ void f_pint(stack_t **head, unsigned int line_n)
 {
 	if (!(*head) || !head)
 	{
-		printf("L%d: can't pint, stack empty\n", line_n);
+		dprintf(STDOUT_FILENO, "L%d: can't pint, stack empty\n", line_n);
 		exit(EXIT_FAIL);
 	}
 	printf("%d\n", (*head)->n);
@@ -80,7 +80,7 @@ void f_pop(stack_t **head, unsigned int line_n)
 {
 	if (!(*head) || !head)
 	{
-		printf("L%d: can't pop an empty stack\n", line_n);
+		dprintf(STDOUT_FILENO, "L%d: can't pop an empty stack\n", line_n);
 		exit(EXIT_FAIL);
 	}
 	if ((*head)->next == NULL)

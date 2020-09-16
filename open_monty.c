@@ -15,7 +15,7 @@ void open_monty(char *file_to_open)
 	st = malloc(sizeof(struct stat));
 	if (stat(file_to_open, st) != 0)
 	{
-		printf("Error: Can't open file %s\n", file_to_open);
+		dprintf(STDOUT_FILENO, "Error: Can't open file %s\n", file_to_open);
 		free(st);
 		exit(EXIT_FAIL);
 	}
@@ -24,7 +24,7 @@ void open_monty(char *file_to_open)
 	if (fd == NULL)
 	{
 		fclose(fd);
-		printf("Error: Can't open file %s\n", file_to_open);
+		dprintf(STDOUT_FILENO, "Error: Can't open file %s\n", file_to_open);
 		exit(EXIT_FAIL);
 	}
 	while (getline(&buffer, &n, fd) != -1)
@@ -134,7 +134,7 @@ unsigned int line_n, FILE *fd, char *buffer)
 		}
 		else
 		{
-			printf("L%d: unknown instruction %s\n", line_n, tok);
+			dprintf(STDOUT_FILENO, "L%d: unknown instruction %s\n", line_n, tok);
 			free_f();
 			free(buffer);
 			fclose(fd);
