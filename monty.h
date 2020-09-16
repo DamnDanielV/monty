@@ -64,6 +64,6 @@ void f_mod(stack_t **head, unsigned int line_n);
 void c_w_args(char *tok, char *tokens,
 unsigned int line_n, FILE *fd, char *buffer);
 int c_n_args(char *tok, unsigned int line_n);
-int check_is_num(char *tokens);
+stack_t *check_is_num(char *tokens, FILE *fd, char *buffer);
 void free_f(void);
 #endif
