@@ -7,7 +7,7 @@
 void open_monty(char *file_to_open)
 {
 	FILE *fd;
-	unsigned int line_n = 1;
+	unsigned int line_n = 0;
 	char *buffer = NULL, *del = " \n\t", *tok = NULL, *tokens = NULL;
 	size_t n;
 	struct stat *st = NULL;
