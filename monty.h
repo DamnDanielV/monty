@@ -55,6 +55,7 @@ void f_pint(stack_t **head, unsigned int line_n);
 void f_pop(stack_t **head, unsigned int line_n);
 void f_swap(stack_t **head, unsigned int line_n);
 void f_add(stack_t **head, unsigned int line_n);
+void f_nop(stack_t **head, unsigned int line_n);
 void c_w_args(char *tok, char *tokens, unsigned int line_n);
 int c_n_args(char *tok, unsigned int line_n);
 #endif
