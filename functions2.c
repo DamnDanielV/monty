@@ -30,3 +30,31 @@ void f_swap(stack_t **head, unsigned int line_n)
 	if ((*head)->next->next != NULL)
 		(*head)->next->next->prev = (*head)->next;
 }
+/**
+ * f_add -  adds the top two elements of the stack.
+ * @head: pointer to the head of the stack
+ * @line_n: Number line where the code fails.
+ * Return: void nothing
+ */
+void f_add(stack_t **head, unsigned int line_n)
+{
+	stack_t *temp;
+	int c = 0, sum = 0;
+
+	temp = *head;
+	while (temp)
+	{
+		c++;
+		temp = temp->next;
+	}
+	if (c < 2)
+	{
+		printf("L%d: can't add, stack too short\n", line_n);
+		exit(EXIT_FAIL);
+	}
+	sum = (*head)->n + (*head)->next->n;
+	(*head) = (*head)->next;
+	free((*head)->prev);
+	(*head)->prev = NULL;
+	(*head)->n = sum;
+}
