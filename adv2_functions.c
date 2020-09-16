@@ -36,14 +36,17 @@ void f_pstr(stack_t **head, unsigned int line_n)
 	{
 		printf("\n");
 	}
-	while (*head)
+	else
 	{
-		if ((*head)->n != 0 && (((*head)->n >= 65 && (*head)->n <= 90)
-		|| ((*head)->n >= 97 && (*head)->n <= 122)))
-			printf("%c", (*head)->n);
-		else
-			break;
-		(*head) = (*head)->next;
+		while (*head)
+		{
+			if ((*head)->n != 0 && (((*head)->n >= 65 && (*head)->n <= 90)
+			|| ((*head)->n >= 97 && (*head)->n <= 122)))
+				printf("%c", (*head)->n);
+			else
+				break;
+			(*head) = (*head)->next;
+		}
+		printf("\n");
 	}
-	printf("\n");
 }
