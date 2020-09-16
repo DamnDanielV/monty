@@ -2,6 +2,8 @@
 /**
 * check_is_num - checks if the arguments are numbers
 * @tokens: Argument to check for ints
+ * @fd: pointer to a monty file
+ * @buffer: pointer to string of monty commands
 * Return: argument or -1 if fails
 */
 stack_t *check_is_num(char *tokens, FILE *fd, char *buffer)
