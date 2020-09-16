@@ -7,13 +7,14 @@
  */
 void f_pchar(stack_t **head, unsigned int line_n)
 {
-	int num = (*head)->n;
+	int num;
 
 	if (!(*head) || !head)
 	{
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_n);
 		exit(EXIT_FAIL);
 	}
+	num = (*head)->n;
 	if ((num >= 65 && num <= 90) || (num >= 97 && num <= 122))
 		printf("%c\n", num);
 	else
