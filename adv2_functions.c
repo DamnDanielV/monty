@@ -35,7 +35,6 @@ void f_pstr(stack_t **head, unsigned int line_n)
 	if (!(*head) || !head)
 	{
 		printf("\n");
-		exit(EXIT_SUCCE);
 	}
 	while (*head)
 	{
