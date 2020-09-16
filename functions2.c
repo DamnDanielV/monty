@@ -58,3 +58,15 @@ void f_add(stack_t **head, unsigned int line_n)
 	(*head)->prev = NULL;
 	(*head)->n = sum;
 }
+/**
+ * f_nop -  doesn’t do anything.
+ * @head: pointer to the head of the stack
+ * @line_n: Number line where the code fails.
+ * Return: void nothing
+ */
+void f_nop(stack_t **head, unsigned int line_n)
+{
+	(void) *head;
+	(void) line_n;
+	/*why exists this function?*/
+}
