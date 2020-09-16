@@ -51,3 +51,28 @@ void f_pstr(stack_t **head, unsigned int line_n)
 		printf("\n");
 	}
 }
+/**
+ * f_rotl - rotates the stack to the top.
+ * @head: pointer to the head of the stack
+ * @line_n: Number line where the code fails.
+ * Return: void nothing
+ */
+void f_rotl(stack_t **head, unsigned int line_n)
+{
+	int fin;
+	stack_t *temp;
+
+	temp = *head;
+	(void)line_n;
+
+	if (*head && head)
+	{
+		fin = (*head)->n;
+		while (temp->next)
+		{
+			temp->n = temp->next->n;
+			temp = temp->next;
+		}
+		temp->n = fin;
+	}
+}
