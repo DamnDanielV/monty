@@ -122,5 +122,4 @@ void f_mod(stack_t **head, unsigned int line_n)
 	rmod = (*head)->next->n % (*head)->n;
 	f_pop(head, line_n);
 	(*head)->n = rmod;
-	
 }
