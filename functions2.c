@@ -7,29 +7,17 @@
  */
 void f_swap(stack_t **head, unsigned int line_n)
 {
+	int temp;
 
-	int c = 0;
-	stack_t *temp;
-
-	temp = *head;
-	while (temp)
+	if (!head || !(*head) || !(*head)->next)
 	{
-		c++;
-		temp = temp->next;
-	}
-	if (c < 2)
-	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_n);
+		printf("L%d: can't swap, stack too short\n", line_n);
 		free_f();
 		exit(EXIT_FAIL);
 	}
-	(*head) = (*head)->next;
-	(*head)->prev->next = (*head)->next;
-	(*head)->prev->prev = (*head);
-	(*head)->next = (*head)->prev;
-	(*head)->prev = NULL;
-	if ((*head)->next->next != NULL)
-		(*head)->next->next->prev = (*head)->next;
+	temp = (*head)->n;
+	(*head)->n = (*head)->next->n;
+	(*head)->next->n = temp;
 }
 /**
  * f_add -  adds the top two elements of the stack.
