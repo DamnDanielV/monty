@@ -118,8 +118,6 @@ void f_mod(stack_t **head, unsigned int line_n)
 		exit(EXIT_FAIL);
 	}
 	rmod = (*head)->next->n % (*head)->n;
-	(*head) = (*head)->next;
-	free((*head)->prev);
-	(*head)->prev = NULL;
+	f_pop(head, line_n);
 	(*head)->n = rmod;
 }
