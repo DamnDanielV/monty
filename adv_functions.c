@@ -110,6 +110,7 @@ void f_mod(stack_t **head, unsigned int line_n)
 	if ((*head)->n == 0)
 	{
 		fprintf(stderr, "L%d: division by zero\n", line_n);
+		free_all(*head);
 		exit(EXIT_FAIL);
 	}
 	if (c < 2)

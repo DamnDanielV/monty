@@ -15,3 +15,19 @@ void free_f(void)
 		free(head);
 	}
 }
+/**
+ * free_all -  free all l_list
+ * @head: pointer to head of linked
+ */
+void free_all(stack_t *head)
+{
+	stack_t *temp;
+
+	temp = head;
+	while (temp != NULL)
+	{
+		free(head);
+		temp = temp->next;
+		head = temp;
+	}
+}
