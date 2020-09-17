@@ -70,7 +70,7 @@ void f_rotl(stack_t **head, unsigned int line_n)
 	}
 	temp = *head;
 	if (c < 2)
-		return;
+		exit(EXIT_SUCCE);
 	if (*head && head)
 	{
 		fin = (*head)->n;
