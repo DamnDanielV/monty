@@ -59,19 +59,20 @@ void f_pstr(stack_t **head, unsigned int line_n)
  */
 void f_rotl(stack_t **head, unsigned int line_n)
 {
+	int fin;
 	stack_t *temp;
 
+	temp = *head;
 	(void)line_n;
 
-	if (*head && head && (*head)->next)
+	if (*head && head)
 	{
-		temp = *head;
+		fin = (*head)->n;
 		while (temp->next)
+		{
+			temp->n = temp->next->n;
 			temp = temp->next;
-		(*head) = (*head)->next;
-		temp->next = (*head)->prev;
-		(*head)->prev = NULL;
-		temp->next->next = NULL;
-		temp->next->prev = temp;
+		}
+		temp->n = fin;
 	}
 }
