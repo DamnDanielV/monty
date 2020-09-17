@@ -7,6 +7,7 @@
  */
 void f_swap(stack_t **head, unsigned int line_n)
 {
+
 	int c = 0;
 	stack_t *temp;
 
@@ -19,14 +20,14 @@ void f_swap(stack_t **head, unsigned int line_n)
 	if (c < 2)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_n);
+		free_f();
 		exit(EXIT_FAIL);
 	}
-
-	(*head)->next = (*head)->next->next;
-	(*head) = (*head)->next->prev;
+	(*head) = (*head)->next;
+	(*head)->prev->next = (*head)->next;
+	(*head)->prev->prev = (*head);
 	(*head)->next = (*head)->prev;
 	(*head)->prev = NULL;
-	(*head)->next->prev = (*head);
 	if ((*head)->next->next != NULL)
 		(*head)->next->next->prev = (*head)->next;
 }
