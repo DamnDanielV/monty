@@ -62,11 +62,11 @@ void f_rotl(stack_t **head, unsigned int line_n)
 	int fin;
 	stack_t *temp;
 
-	temp = *head;
 	(void)line_n;
 
 	if (*head && head)
 	{
+		temp = *head;
 		fin = (*head)->n;
 		while (temp->next)
 		{
