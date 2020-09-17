@@ -32,10 +32,7 @@ void f_pchar(stack_t **head, unsigned int line_n)
 void f_pstr(stack_t **head, unsigned int line_n)
 {
 	(void)line_n;
-	if (!(*head) || !head)
-	{
-		printf("\n");
-	}
+
 	while (*head)
 	{
 		if ((*head)->n < 1 || (*head)->n > 127)
@@ -43,7 +40,7 @@ void f_pstr(stack_t **head, unsigned int line_n)
 		printf("%c", (*head)->n);
 		(*head) = (*head)->next;
 	}
-		printf("\n");
+	printf("\n");
 }
 /**
  * f_rotl - rotates the stack to the top.
