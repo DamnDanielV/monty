@@ -31,14 +31,16 @@ void f_pchar(stack_t **head, unsigned int line_n)
  */
 void f_pstr(stack_t **head, unsigned int line_n)
 {
-	(void)line_n;
+	stack_t *cp;
 
-	while (*head)
+	(void)line_n;
+	cp = *head;
+	while (cp)
 	{
-		if ((*head)->n < 1 || (*head)->n > 127)
+		if (cp->n < 1 || cp->n > 127)
 			break;
-		printf("%c", (*head)->n);
-		(*head) = (*head)->next;
+		printf("%c", cp->n);
+		cp = cp->next;
 	}
 	printf("\n");
 }
