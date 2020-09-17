@@ -36,20 +36,14 @@ void f_pstr(stack_t **head, unsigned int line_n)
 	{
 		printf("\n");
 	}
-	else
+	while (*head && (*head)->n != 0)
 	{
-		while (*head && (*head)->n != 0)
-		{
-			if (((*head)->n >= 1 && (*head)->n <= 127))
-			{
-				printf("%c", (*head)->n);
-				(*head) = (*head)->next;
-			}
-			else
-				break;
-		}
-		printf("\n");
+		if ((*head)->n < 1 || (*head)->n > 127)
+			break;
+		printf("%c", (*head)->n);
+		(*head) = (*head)->next;
 	}
+		printf("\n");
 }
 /**
  * f_rotl - rotates the stack to the top.
