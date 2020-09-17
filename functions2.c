@@ -7,7 +7,6 @@
  */
 void f_swap(stack_t **head, unsigned int line_n)
 {
-	int temp;
 
 	if (!head || !(*head) || !(*head)->next)
 	{
@@ -15,9 +14,13 @@ void f_swap(stack_t **head, unsigned int line_n)
 		free_f();
 		exit(EXIT_FAIL);
 	}
-	temp = (*head)->n;
-	(*head)->n = (*head)->next->n;
-	(*head)->next->n = temp;
+	(*head) = (*head)->next;
+	(*head)->prev->next = (*head)->next;
+	(*head)->prev->prev = (*head);
+	(*head)->next = (*head)->prev;
+	(*head)->prev = NULL;
+	if ((*head)->next->next != NULL)
+		(*head)->next->next->prev = (*head)->next;
 }
 /**
  * f_add -  adds the top two elements of the stack.
