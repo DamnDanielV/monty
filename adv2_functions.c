@@ -67,3 +67,30 @@ void f_rotl(stack_t **head, unsigned int line_n)
 		temp->n = fin;
 	}
 }
+/**
+ * f_rotr - rotates the stack to the bottom.
+ * @head: pointer to the head of the stack
+ * @line_n: Number line where the code fails.
+ * Return: void nothing
+ */
+void f_rotr(stack_t **head, unsigned int line_n)
+{
+	int act, next;
+	stack_t *cp;
+
+	(void)line_n;
+
+	if (head && *head)
+	{
+		cp = *head;
+		next = cp->n;
+		while (cp->next)
+		{
+			act = next;
+			next = cp->next->n;
+			cp->next->n = act;
+			cp = cp->next;
+		}
+		(*head)->n = next;
+	}
+}
