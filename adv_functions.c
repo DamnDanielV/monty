@@ -116,6 +116,7 @@ void f_mod(stack_t **head, unsigned int line_n)
 	if (c < 2)
 	{
 		fprintf(stderr, "L%d: can't mod, stack too short\n", line_n);
+		free_all(*head);
 		exit(EXIT_FAIL);
 	}
 	rmod = (*head)->next->n % (*head)->n;
