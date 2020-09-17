@@ -49,26 +49,13 @@ void f_pall(stack_t **head, unsigned int line_n)
  */
 void f_push(stack_t **stack, unsigned int line_n)
 {
-	stack_t *new;
-
 	(void) line_n;
 
-	new = malloc(sizeof(stack_t));
-
-	if (*stack == NULL)
-	{
-		new->next = NULL;
-		new->prev = NULL;
-		*stack = new;
-	}
-	else
-	{
-		(*stack)->next = head;
-		(*stack)->prev = NULL;
-		if ((*stack)->next != NULL)
-			(*stack)->next->prev = (*stack);
-		head = (*stack);
-	}
+	(*stack)->next = head;
+	(*stack)->prev = NULL;
+	if ((*stack)->next != NULL)
+		(*stack)->next->prev = (*stack);
+	head = (*stack);
 }
 /**
  * f_pint -  prints the value at the top of the stack.
