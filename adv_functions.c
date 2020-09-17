@@ -119,7 +119,7 @@ void f_mod(stack_t **head, unsigned int line_n)
 	}
 	rmod = (*head)->next->n % (*head)->n;
 	(*head) = (*head)->next;
-	free((*head)->prev);
-	(*head)->prev = NULL;
+	(*head)->next->prev = NULL;
 	(*head)->n = rmod;
+	free((*head)->prev);
 }
