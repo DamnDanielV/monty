@@ -82,7 +82,7 @@ void f_rotr(stack_t **head, unsigned int line_n)
 
 	(void)line_n;
 
-	if (head && *head)
+	if (head && *head && (*head)->next != NULL)
 	{
 		cp = *head;
 		next = cp->n;
